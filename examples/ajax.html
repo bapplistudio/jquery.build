@@ -1,37 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>jquery.build ajax example</title>
+<script src="jquery.js"></script>
+<script src="../jquery.build.js"></script>
 
-	<title>jquery.build ajax example</title>
-	<script src="jquery.js"></script>
-	<script src="../jquery.build.js"></script>
+<script>
 
-	<script>
+$("document").ready(function() {
+	$("body").build(function() {
+		// This code will be executed each time you call $.build()
 
-		$("document").ready(function() {
-			$("body").build(function() {
-				// This code will be executed each time you call $.build()
+		this.in(".helloworld").click(function() {
+			alert("Hello World");
+		});
 
-				this.in(".helloworld").click(function() {
-					alert("Hello World");
-				});
-
-				this.in("#add").click(function() {
-					$.ajax({
-						url: "https://raw.github.com/bapplistudio/jquery.build/master/examples/ajaxcall.html",
-						error: function() {
-							alert("error loading ajax data");
-						},
-						success: function(data) {
-							$("body").append(data).build();
-						}
-					});
-				});
-
+		this.in("#add").click(function() {
+			$.ajax({
+				url: "http://saf.re/github/jquery.build/examples/ajaxcall.html",
+				error: function() {
+					alert("error loading ajax data");
+				},
+				success: function(data) {
+					$("#target").html(data).build();
+				}
 			});
 		});
 
-	</script>
+	});
+});
+
+</script>
 
 </head>
 <body>
@@ -49,8 +48,9 @@
 
 	<button class="helloworld">Hello world</button>
 	<p>
-		<button id="add">Add a button</button>
+		<button id="add">Add a button thanks to an ajax call</button>
 	</p>
+	<div id="target">(the container for ajax result)</div>
 </div>
 
 <div id="code">
@@ -77,9 +77,12 @@ $("document").ready(function() {
 
 		this.in("#add").click(function() {
 			$.ajax({
-				url: "ajaxcall.html",
+				url: "http://saf.re/github/jquery.build/examples/ajaxcall.html",
+				error: function() {
+					alert("error loading ajax data");
+				},
 				success: function(data) {
-					$("body").append(data).build();
+					$("#target").html(data).build();
 				}
 			});
 		});
