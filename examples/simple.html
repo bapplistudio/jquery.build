@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>jquery.build simple example</title>
+	<script src="jquery.js"></script>
+	<script src="../jquery.build.js"></script>
+
+	<script>
+
+		$("document").ready(function() {
+			$("body").build(function() {
+				// This code will be executed each time you call $.build()
+
+				this.in(".helloworld").click(function() {
+					alert("Hello World");
+				});
+
+				this.in("#add").click(function() {
+					$("body").append($("<button>").addClass("helloworld").html("Hello world").build());
+				});
+
+			});
+		});
+
+	</script>
+
+</head>
+<body>
+
+<a href="https://github.com/bapplistudio/jquery.build">source / download</a>
+-
+<strong>simple example</strong>
+-
+<a href="ajax.html">ajax example</a>
+
+<h1>jquery.build simple example</h1>
+
+<div id="example">
+	<h2>The example</h2>
+
+	<button class="helloworld">Hello world</button>
+	<p>
+		<button id="add">Add a button</button>
+	</p>
+</div>
+
+<div id="code">
+	<h2>The code</h2>
+
+	<p>
+		You can tell jquery to call events for new dynamically added elements with <a href="http://api.jquery.com/on/">.on()</a>,
+		but what about other jquery initialisations, such as jquery-ui widgets building ?
+	</p>
+	<p>
+		jquery.build helps you to do that.
+	</p>
+
+	<p>
+		Typical initialization code, without build&nbsp;:<br>
+		The helloworld event will ony be set for the initial button, not for the dynamically added buttons&nbsp;:
+		<pre>
+$("document").ready(function() {
+	// This code is executed only when you load the page, and not for dynamically added elements
+
+	$(".helloworld").click(function() {
+		alert("Hello World");
+	});
+
+	$("#add").click(function() {
+		$("body").append($("&lt;button&gt;").addClass("helloworld").html("Hello world"));
+	});
+});
+		</pre>
+	</p>
+
+	<p>
+		Now use build and keep dynamics&nbsp;:<br>
+		The helloworld event is set for the initial button, and for the dynamically added buttons&nbsp;:
+		<pre>
+$("document").ready(function() {
+	$("body").build(function() {
+		// This code will be executed each time you call $.build()
+
+		this.in(".helloworld").click(function() {
+			alert("Hello World");
+		});
+
+		this.in("#add").click(function() {
+			$("body").append($("&lt;button&gt;").addClass("helloworld").html("Hello world").build());
+		});
+
+	});
+});
+		</pre>
+	</p>
+
+	<p>
+		To make this work the best&nbsp;:
+		<ul>
+			<li>You should make all your jquery initializations into the <strong>$("body").build(function() { (...) });</strong> section</li>
+			<li>You should call <strong>build()</strong> for each dynamically elements, including ajax calls</li>
+		</ul>
+	</p>
+</div>
+
+</body>
+</html>

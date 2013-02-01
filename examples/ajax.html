@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>jquery.build ajax example</title>
+	<script src="jquery.js"></script>
+	<script src="../jquery.build.js"></script>
+
+	<script>
+
+		$("document").ready(function() {
+			$("body").build(function() {
+				// This code will be executed each time you call $.build()
+
+				this.in(".helloworld").click(function() {
+					alert("Hello World");
+				});
+
+				this.in("#add").click(function() {
+					$.ajax({
+						url: "https://raw.github.com/bapplistudio/jquery.build/master/examples/ajaxcall.html",
+						error: function() {
+							alert("error loading ajax data");
+						},
+						success: function(data) {
+							$("body").append(data).build();
+						}
+					});
+				});
+
+			});
+		});
+
+	</script>
+
+</head>
+<body>
+
+<a href="https://github.com/bapplistudio/jquery.build">source / download</a>
+-
+<a href="simple.html">simple example</a>
+-
+<strong>ajax example</strong>
+
+<h1>jquery.build ajax example</h1>
+
+<div id="example">
+	<h2>The example</h2>
+
+	<button class="helloworld">Hello world</button>
+	<p>
+		<button id="add">Add a button</button>
+	</p>
+</div>
+
+<div id="code">
+	<h2>The code</h2>
+
+	<p>
+		You can tell jquery to call events for new dynamically added elements with <a href="http://api.jquery.com/on/">.on()</a>,
+		but what about other jquery initialisations, such as jquery-ui widgets building ?
+	</p>
+	<p>
+		jquery.build helps you to do that.
+	</p>
+
+	<p>
+		The code of the example&nbsp;:
+		<pre>
+$("document").ready(function() {
+	$("body").build(function() {
+		// This code will be executed each time you call $.build()
+
+		this.in(".helloworld").click(function() {
+			alert("Hello World");
+		});
+
+		this.in("#add").click(function() {
+			$.ajax({
+				url: "ajaxcall.html",
+				success: function(data) {
+					$("body").append(data).build();
+				}
+			});
+		});
+
+	});
+});
+		</pre>
+	</p>
+
+</div>
+
+</body>
+</html>
