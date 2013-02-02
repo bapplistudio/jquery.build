@@ -85,6 +85,8 @@ Once the result of the ajax call generated new DOM elements into your target div
 
 ## Use after dynamically adding elements
 
+Each time you add DOM elements, call $(element).build(); to build it and it's children (and sub-children).
+
 [Here is a live example](http://saf.re/github/jquery.build/examples/simple.html)
 
 # Unleash its power
