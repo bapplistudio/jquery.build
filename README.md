@@ -42,9 +42,12 @@ $(document).ready(function() {
 });
 ```
 
-The builded function will be immediately called for &lt;body&gt;, and will be called each time you call **.build()** (without any parameter) for your added elements.
+The build function will be immediately called for &lt;body&gt;, and will be called each time you call **.build()** (without any parameter) for your added elements.
 
 You can declare multiple build functions, in several scripts, they all will be called at each **.build()** call.
+
+Into a build function, this is the jquery object of the elements that will be activated. You can use all jquery methods to find and activate elements.
+**jquery.build** adds **.in()** to search elements into the current builded element and the [.find()](http://jquery.com/find) children (and sub-children) elements.
 
 ## Use after an ajax call
 
@@ -55,8 +58,8 @@ $("button").click(function() {
 	$.ajax({
 		url: "foo.html",
 		success: function(data) {
-			$("#target).html(data);
-			$("#target).children().build();
+			$("#target").html(data);
+			$("#target").children().build();
 		}
 	})
 });
