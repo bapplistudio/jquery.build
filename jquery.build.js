@@ -16,13 +16,27 @@
 	$.fn.build = function (callback, call_now)
 	{
 		// use this.in(selector) in callback to build the elements
-		this.in = function(selector)
+		this.in = function(selector, nop)
 		{
-			var result = this.find(selector);
-			if (this.is(selector)) {
-				result = this.add(result);
+			// accepts ".aclass, .another" : take each of them
+			var i = selector.indexOf(",");
+			if (i > -1) {
+				var selectors = selector.split(",");
+				var result = $();
+				var obj = this;
+				$.each(selectors, function(index, value) { result = result.add(obj.in(value.trim())); });
+				return result;
 			}
-			return result;
+			// accepts ".myclass .subelems" selectors : .myclass for this working
+			if (nop == undefined) {
+				nop = true;
+				i = selector.indexOf(" ");
+				if (i > -1) {
+					return this.in(selector.substr(0, i), nop).find(selector.substr(i + 1));
+				}
+			}
+			// filtered object itself, added to find into it's children
+			return this.filter(selector).add(this.find(selector));
 		};
 		//
 		if (callback != undefined) {
@@ -36,7 +50,7 @@
 		}
 		else {
 			// execute all callback functions
-			for (var key in jquery_build_callback) {
+			for (var key in jquery_build_callback) if (jquery_build_callback.hasOwnProperty(key)) {
 				callback = window.jquery_build_callback[key];
 				this.tmpBuildCaller = callback;
 				this.tmpBuildCaller();
@@ -44,6 +58,7 @@
 			delete this.tmpBuildCaller;
 		}
 		delete this.in;
+
 		return this;
 	}
 
