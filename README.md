@@ -21,8 +21,8 @@ To init some jquery active elements, you do that kind of stuff :
 
 ```javascript
 $(document).ready(function() {
-  $("span").click(function(event) {
-    alert("Hello world");
+  $('span').click(function(event) {
+    alert('Hello world');
   });
 });
 ```
@@ -34,9 +34,9 @@ With the help of the jquery.build plugin, if you ever initialize your active ele
 
 ```javascript
 $(document).ready(function() {
-	$("body").build(function() {
-		this.in("span").click(function(event) {
-			alert("Hello world");
+	$('body').build(function() {
+		this.in('span').click(function(event) {
+			alert('Hello world');
 		});
 	}
 });
@@ -54,12 +54,12 @@ Into a build function, this is the jquery object of the elements that will be ac
 Look at this initialization code :
 
 ```javascript
-$("button").click(function() {
+$('button').click(function() {
 	$.ajax({
-		url: "foo.html",
+		url: 'foo.html',
 		success: function(data) {
-			$("#target").html(data);
-			$("#target").children().build();
+			$('#target').html(data);
+			$('#target').children().build();
 		}
 	})
 });

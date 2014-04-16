@@ -7,22 +7,22 @@
 
 <script>
 
-$("document").ready(function() {
-	$("body").build(function() {
+$('document').ready(function() {
+	$('body').build(function() {
 		// This code will be executed each time you call $.build()
 
-		this.in(".helloworld").click(function() {
-			alert("Hello World");
+		this.in('.helloworld').click(function() {
+			alert('Hello World');
 		});
 
-		this.in("#add").click(function() {
+		this.in('#add').click(function() {
 			$.ajax({
-				url: "http://saf.re/github/jquery.build/examples/_ajax.html",
+				url: 'http://saf.re/github/jquery.build/examples/_ajax.html',
 				error: function() {
-					alert("error loading ajax data");
+					alert('error loading ajax data');
 				},
 				success: function(data) {
-					$("#target").html(data).build();
+					$('#target').html(data).build();
 				}
 			});
 		});
@@ -65,22 +65,22 @@ $("document").ready(function() {
 	<p>
 		The code of the example&nbsp;:
 		<pre>
-$("document").ready(function() {
-	$("body").build(function() {
+$('document').ready(function() {
+	$('body').build(function() {
 		// This code will be executed each time you call $.build()
 
-		this.in(".helloworld").click(function() {
-			alert("Hello World");
+		this.in('.helloworld').click(function() {
+			alert('Hello World');
 		});
 
-		this.in("#add").click(function() {
+		this.in('#add').click(function() {
 			$.ajax({
-				url: "http://saf.re/github/jquery.build/examples/_ajax.html",
+				url: 'http://saf.re/github/jquery.build/examples/_ajax.html',
 				error: function() {
-					alert("error loading ajax data");
+					alert('error loading ajax data');
 				},
 				success: function(data) {
-					$("#target").html(data).build();
+					$('#target').html(data).build();
 				}
 			});
 		});
