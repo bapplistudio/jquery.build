@@ -1,5 +1,6 @@
 jquery.build
 ============
+jQuery events and modifiers persistant when doing ajax calls
 
 # Overview
 
